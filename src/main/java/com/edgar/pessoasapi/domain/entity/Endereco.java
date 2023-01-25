@@ -1,8 +1,9 @@
 package com.edgar.pessoasapi.domain.entity;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,16 +21,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "TB_ENDERECO")
-public class Endereco {
+public class Endereco implements Serializable {
 	
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private Long idEndereco;
-	 
-	 @Column(name = "LOGRADOURO") private String logradouro;
-	 @Column(name = "CEP") private String cep;
-	 @Column(name = "NUMERO") private String numero;
-	 @Column(name = "CIDADE") private String cidade;
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id; 
+	private String logradouro;
+	private String cep;
+	private String numero;
+	private String cidade; 
+	private Boolean padrao;
 	 
 	@ManyToOne
 	@JsonIgnoreProperties("enderecos")
