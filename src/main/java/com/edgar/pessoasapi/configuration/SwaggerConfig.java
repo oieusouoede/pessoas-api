@@ -24,8 +24,8 @@ public class SwaggerConfig {
 						.url("https://github.com/oieusouoede")
 						.email("edemarinho@outlook.com")))
 				.externalDocs(new ExternalDocumentation()
-						.description("GitHub")
-						.url(""));
+						.description("Repositorio")
+						.url("https://github.com/oieusouoede/pessoas-api"));
 	}
 
 }
