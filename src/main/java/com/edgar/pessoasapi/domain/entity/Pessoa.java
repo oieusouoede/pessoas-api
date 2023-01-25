@@ -1,13 +1,14 @@
 package com.edgar.pessoasapi.domain.entity;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,16 +25,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "TB_PESSOA")
-public class Pessoa {
+public class Pessoa implements Serializable {
 	
+	 private static final long serialVersionUID = 1L;
+
 	 @Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private Long idPessoa;
+	 @GeneratedValue(strategy = GenerationType.AUTO)
+	 private Long id;
+	 private String nome;
+	 private LocalDate dtNascimento;
 	 
-	 @Column(name = "NOME") private String nome;
-	 @Column(name = "NASCIMENTO") private Date dtNascimento;
-	 
-	 @OneToMany(mappedBy = "pessoa", cascade = CascadeType.REMOVE)
+	 @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	 @JsonIgnoreProperties("pessoa")
 	 private List<Endereco> enderecos;
+	 
 }
