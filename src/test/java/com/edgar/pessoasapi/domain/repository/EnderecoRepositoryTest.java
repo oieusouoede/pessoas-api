@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 
 import com.edgar.pessoasapi.application.dto.EnderecoDTO;
 import com.edgar.pessoasapi.application.dto.PessoaDTO;
@@ -21,6 +23,7 @@ import com.edgar.pessoasapi.domain.service.IPessoaService;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 public class EnderecoRepositoryTest {
 	
 	private @Autowired IEnderecoRepository repository;
